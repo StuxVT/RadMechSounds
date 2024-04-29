@@ -30,12 +30,20 @@ public class RadMechSounds : BaseUnityPlugin
     {
         this.Logger.LogInfo("stux.RadmechSounds is loading");
         
+        
+        string dllPath = Instance.Info.Location;
+        string dllName = "YippeeMod.dll";
+        string pluginPath = dllPath.TrimEnd(dllName.ToCharArray());
+        string assetPath = pluginPath + "radmechsoundbundle";
+        
         brainwashSounds = new AudioClip[5];
-        // set all brainwashSounds to blank asset at assets/blank.wav
+        AssetBundle val = AssetBundle.LoadFromFile(assetPath);
+        
         for (int i = 0; i < brainwashSounds.Length; i++)
         {
-            brainwashSounds[i] = AssetBundle.LoadFromFile(Info.Location.TrimEnd("RadmechSounds.dll".ToCharArray()) + "blank").LoadAsset<AudioClip>("assets/blank.wav");
+            brainwashSounds[i] = val.LoadAsset<AudioClip>("assets/lyla_bark.ogg");
         }
+        
         if (brainwashSounds[0] == null)
         { //  todo, check if all are null
             this.Logger.LogError("Failed to load audio assets!");
