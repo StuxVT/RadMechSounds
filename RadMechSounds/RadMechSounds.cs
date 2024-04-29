@@ -11,7 +11,7 @@ public class RadMechSounds : BaseUnityPlugin
 {
     private const string modGUID = "stux.RadmechSounds";
     private const string modName = "RadmechSounds";
-    private const string modVersion = "0.1.0";
+    private const string modVersion = "1.1.0";
     public static RadMechSounds Instance { get; set; }
 
     public static ManualLogSource Log => Instance.Logger;
