@@ -11,7 +11,7 @@ public class RadMechSounds : BaseUnityPlugin
 {
     private const string modGUID = "stux.RadmechSounds";
     private const string modName = "RadmechSounds";
-    private const string modVersion = "1.1.0";
+    private const string modVersion = "1.1.1";
     public static RadMechSounds Instance { get; set; }
 
     public static ManualLogSource Log => Instance.Logger;
@@ -32,9 +32,10 @@ public class RadMechSounds : BaseUnityPlugin
         
         
         string dllPath = Instance.Info.Location;
-        string dllName = "RadmechSounds.dll";
-        string pluginPath = dllPath.TrimEnd(dllName.ToCharArray());
-        string assetPath = pluginPath + "radmechsoundbundle";
+        this.Logger.LogInfo($"dllPath: {dllPath}");
+        string[] splitPath = dllPath.Split('\\');
+        splitPath[^1] = "radmechsoundbundle";
+        string assetPath = string.Join("\\", splitPath);
         
         brainwashSounds = new AudioClip[5];
         AssetBundle val = AssetBundle.LoadFromFile(assetPath);
